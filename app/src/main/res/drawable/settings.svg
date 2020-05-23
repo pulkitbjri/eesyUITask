@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="4px" height="16px" viewBox="0 0 4 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon_dots</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HOST-DOUBLE-PLAN" transform="translate(-222.000000, -405.000000)" fill="#536A8A">
+            <path d="M216,413 C216,411.895 216.895,411 218,411 C219.105,411 220,411.895 220,413 C220,414.105 219.105,415 218,415 C216.895,415 216,414.105 216,413 Z M222,413 C222,411.895 222.895,411 224,411 C225.105,411 226,411.895 226,413 C226,414.105 225.105,415 224,415 C222.895,415 222,414.105 222,413 Z M228,413 C228,411.895 228.895,411 230,411 C231.105,411 232,411.895 232,413 C232,414.105 231.105,415 230,415 C228.895,415 228,414.105 228,413 Z" id="icon_dots" transform="translate(224.000000, 413.000000) rotate(90.000000) translate(-224.000000, -413.000000) "></path>
+        </g>
+    </g>
+</svg>
