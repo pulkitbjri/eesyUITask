@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lingtGray"
     tools:context=".MainActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calenderView" />
 
     <View
         android:id="@+id/view"
@@ -24,10 +34,9 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:title=" "
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back"
-        >
+        app:title=" ">
 
         <TextView
             android:id="@+id/toolbar_title"
@@ -43,8 +52,13 @@
     </androidx.appcompat.widget.Toolbar>
 
     <com.example.eezytask.calenderView.CalenderView
+        android:id="@+id/calenderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+    </com.example.eezytask.calenderView.CalenderView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

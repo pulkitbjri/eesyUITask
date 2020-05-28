@@ -5,10 +5,16 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SnapHelper
 import com.example.eezytask.R
+import com.example.eezytask.helpers.SnapHelperOneByOne
+import kotlinx.android.synthetic.main.calender_view.view.*
 
 
 class CalenderView : FrameLayout {
+    private lateinit var itemView: View
+
     constructor(context: Context) : super(context){
         init(context)
     }
@@ -35,8 +41,16 @@ class CalenderView : FrameLayout {
     }
 
     private fun init(context: Context?) {
-        val itemView: View = LayoutInflater.from(context).inflate(R.layout.calender_view, this, false)
+        itemView = LayoutInflater.from(context).inflate(R.layout.calender_view, this, false)
         this.addView(itemView)
+        setRecycler()
+        }
+
+    private fun setRecycler() {
+        recyclerView.layoutManager= LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = CalenderViewAdapter()
+        val snapHelper: SnapHelper = SnapHelperOneByOne()
+        snapHelper.attachToRecyclerView(recyclerView)
     }
 
 }
