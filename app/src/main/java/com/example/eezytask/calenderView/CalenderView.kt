@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.eezytask.R
 import com.example.eezytask.helpers.SnapHelperOneByOne
@@ -46,11 +47,24 @@ class CalenderView : FrameLayout {
         setRecycler()
         }
 
+    var direction : Int = 0 //0 left ,1 right
     private fun setRecycler() {
         recyclerView.layoutManager= LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = CalenderViewAdapter()
         val snapHelper: SnapHelper = SnapHelperOneByOne()
         snapHelper.attachToRecyclerView(recyclerView)
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_SETTLING || newState == RecyclerView.SCROLL_STATE_IDLE){
+                    val pos= ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
+                    recyclerView.adapter?.notifyItemChanged(pos)
+                }
+
+            }
+        })
     }
 
 }

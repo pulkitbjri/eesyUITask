@@ -3,12 +3,14 @@ package com.example.eezytask.calenderView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eezytask.R
 
 
 class CalenderViewAdapter : RecyclerView.Adapter<CalenderViewAdapter.ViewHolder>() {
-
+    public var selected : Int = R.id.mon
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView: View = LayoutInflater
             .from(parent.context)
@@ -25,10 +27,18 @@ class CalenderViewAdapter : RecyclerView.Adapter<CalenderViewAdapter.ViewHolder>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.bind()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val rg = itemView.findViewById<RadioGroup>(R.id.radioGroup)
+
+        fun bind() {
+            itemView.findViewById<RadioButton>(selected).performClick()
+            rg.setOnCheckedChangeListener { group, checkedId ->
+                selected=checkedId
+            }
+        }
 
     }
 }

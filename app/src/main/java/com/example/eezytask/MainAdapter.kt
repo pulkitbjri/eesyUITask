@@ -101,6 +101,9 @@ class MainAdapter(val list: ArrayList<Data>) : RecyclerView.Adapter<MainAdapter.
             headerLay.setBackgroundColor(Color.WHITE)
             bottomLay.visibility= GONE
             card.cardElevation= Utils.dpToPx(2f,itemView.context).toFloat()
+            name.setTextColor(ContextCompat.getColor(itemView.context,R.color.textColor1))
+            temp.setTextColor(ContextCompat.getColor(itemView.context,R.color.textColor1))
+            iv_temp.setColorFilter(ContextCompat.getColor(itemView.context, R.color.textColor1), android.graphics.PorterDuff.Mode.MULTIPLY);
         }
 
         fun expand() {
@@ -111,6 +114,9 @@ class MainAdapter(val list: ArrayList<Data>) : RecyclerView.Adapter<MainAdapter.
             headerLay.setBackgroundColor(ContextCompat.getColor(itemView.context,R.color.colorPrimary))
             bottomLay.visibility= VISIBLE
             card.cardElevation= Utils.dpToPx(0f,itemView.context).toFloat()
+            name.setTextColor(Color.WHITE)
+            temp.setTextColor(Color.WHITE)
+            iv_temp.setColorFilter(Color.WHITE, android.graphics.PorterDuff.Mode.MULTIPLY);
         }
 
 
