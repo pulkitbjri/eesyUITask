@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:clipToPadding="false">
 
 
     <com.example.eezytask.slotsCustomView.CustomGrooveView
@@ -17,7 +18,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/restroName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -30,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/customGrooveView2" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -38,19 +39,20 @@
         android:textColor="#807F7F"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintBottom_toBottomOf="@+id/restroName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        app:layout_constraintTop_toTopOf="@+id/restroName" />
 
-    <ImageView
-        android:id="@+id/imageView18"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageVenue"
         android:layout_width="200dp"
         android:layout_height="140dp"
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:srcCompat="@drawable/sample" />
+        android:src="@drawable/sample"
+        app:layout_constraintStart_toStartOf="@+id/restroName"
+        app:layout_constraintTop_toBottomOf="@+id/restroName"
+        app:riv_corner_radius="6dp" />
 
     <ImageView
         android:id="@+id/imageView19"
@@ -68,12 +70,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="6dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView18"
-        app:layout_constraintTop_toTopOf="@+id/imageView18"
+        app:layout_constraintStart_toEndOf="@+id/imageVenue"
+        app:layout_constraintTop_toTopOf="@+id/imageVenue"
         app:srcCompat="@drawable/ic_restaurant" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
@@ -81,11 +83,11 @@
         android:text="20 Quens SW7 2DR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintStart_toStartOf="@+id/dish"
         app:layout_constraintTop_toTopOf="@+id/imageView19" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/dish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -99,52 +101,55 @@
     <Button
         android:id="@+id/decline"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="25dp"
+        android:background="@drawable/btn_circular_bg"
         android:backgroundTint="#EDF0F6"
+        android:elevation="2dp"
         android:text="Decline"
         android:textAllCaps="false"
         app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+        app:layout_constraintBottom_toBottomOf="@+id/imageVenue"
         app:layout_constraintEnd_toEndOf="@+id/customGrooveView2"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView18"
+        app:layout_constraintStart_toEndOf="@+id/imageVenue"
         app:layout_constraintTop_toBottomOf="@+id/accept" />
 
     <Button
         android:id="@+id/accept"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="25dp"
+        android:background="@drawable/btn_circular_bg"
         android:backgroundTint="#04C35F"
+        android:elevation="2dp"
         android:text="Accept"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/customGrooveView2"
-        app:layout_constraintStart_toEndOf="@+id/imageView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintStart_toEndOf="@+id/imageVenue"
+        app:layout_constraintTop_toBottomOf="@+id/address" />
 
     <Button
         android:id="@+id/accepted"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="25dp"
-        android:background="@drawable/chat_background"
+        android:background="@drawable/btn_circular_bg_corners"
         android:text="Accepted"
         android:textAllCaps="false"
         android:textColor="#04C35F"
-        app:cornerRadius="2dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+        app:cornerRadius="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageVenue"
         app:layout_constraintEnd_toEndOf="@+id/customGrooveView2"
-        app:layout_constraintStart_toEndOf="@+id/imageView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintStart_toEndOf="@+id/imageVenue"
+        app:layout_constraintTop_toBottomOf="@+id/address" />
 
     <View
         android:id="@+id/view4"

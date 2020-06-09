@@ -26,7 +26,7 @@ class CustomGrooveView : View{
 
     private var mShadow: Bitmap? = null
     private val mShadowPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val mShadowRadius: Int=Utils.dpToPx(6f,context!!)
+    private val mShadowRadius: Int=Utils.dpToPx(4f,context!!)
 
     constructor(context: Context) : super(context){
         init(null)

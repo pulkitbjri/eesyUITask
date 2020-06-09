@@ -11,10 +11,14 @@ import androidx.recyclerview.widget.SnapHelper
 import com.example.eezytask.R
 import com.example.eezytask.helpers.SnapHelperOneByOne
 import kotlinx.android.synthetic.main.calender_view.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CalenderView : FrameLayout {
     private lateinit var itemView: View
+    lateinit var dates :ArrayList<Date>
 
     constructor(context: Context) : super(context){
         init(context)
@@ -40,20 +44,26 @@ class CalenderView : FrameLayout {
     {
         init(context)
     }
-
     private fun init(context: Context?) {
+        initCalenderDates()
         itemView = LayoutInflater.from(context).inflate(R.layout.calender_view, this, false)
         this.addView(itemView)
         setRecycler()
-        }
+    }
 
-    var direction : Int = 0 //0 left ,1 right
+    private fun initCalenderDates() {
+        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+        val today = Date()
+        val todayWithZeroTime: Date = formatter.parse(formatter.format(today))
+        dates=getDatesBetween(todayWithZeroTime)
+
+    }
+
     private fun setRecycler() {
         recyclerView.layoutManager= LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = CalenderViewAdapter()
+        recyclerView.adapter = CalenderViewAdapter(dates)
         val snapHelper: SnapHelper = SnapHelperOneByOne()
         snapHelper.attachToRecyclerView(recyclerView)
-
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -65,6 +75,46 @@ class CalenderView : FrameLayout {
 
             }
         })
+    }
+
+    fun getDatesBetween(
+        startDate: Date
+    ): ArrayList<Date> {
+        val weekDaysPassed= getWeekDaysPassed(startDate)
+        val newStartDate = getNewStartDate(weekDaysPassed,startDate)
+        val cal = Calendar.getInstance()
+        cal.time=newStartDate
+        cal.add(Calendar.DATE, 168)
+        val endDate = cal.time
+
+        val datesInRange: ArrayList<Date> = ArrayList()
+        val calendar: Calendar = GregorianCalendar()
+        calendar.time = newStartDate
+        val endCalendar: Calendar = GregorianCalendar()
+        endCalendar.time = endDate
+        while (calendar.before(endCalendar)) {
+            val result: Date = calendar.getTime()
+            datesInRange.add(result)
+            calendar.add(Calendar.DATE, 1)
+        }
+        return datesInRange
+    }
+
+    private fun getNewStartDate(weekDaysPassed: Int, startDate: Date): Date {
+        val d = startDate
+        val dateBefore =  Date(d.getTime() - weekDaysPassed * 24 * 3600 * 1000 )
+        return dateBefore
+    }
+
+    private fun getWeekDaysPassed(startDate: Date): Int {
+        val c = Calendar.getInstance()
+        c.time = startDate
+        c.set(Calendar.DAY_OF_WEEK,-3)
+        val dayOfWeek = c[Calendar.DAY_OF_WEEK]
+        if (dayOfWeek==1)
+            return 6
+        else
+            return dayOfWeek-2
     }
 
 }

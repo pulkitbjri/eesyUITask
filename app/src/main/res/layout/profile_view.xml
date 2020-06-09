@@ -5,57 +5,60 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView11"
-        android:layout_width="50dp"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/image1"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:src="@drawable/profile2"
-        app:civ_border_color="#F4F8FF"
-        app:civ_border_width="2dp"
+        app:riv_border_color="#F4F8FF"
+        app:riv_border_width="2dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="25dp" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView14"
-        android:layout_width="50dp"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/image2"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:src="@drawable/profile3"
         android:translationX="-15dp"
-        app:civ_border_color="#F4F8FF"
-        app:civ_border_width="2dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView11" />
+        app:riv_border_color="#F4F8FF"
+        app:riv_border_width="2dp"
+        app:layout_constraintStart_toEndOf="@+id/image1"
+        app:layout_constraintTop_toTopOf="@+id/image1"
+        app:riv_corner_radius="25dp" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView16"
-        android:layout_width="50dp"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/image3"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:src="@drawable/profile4"
         android:translationX="-30dp"
-        app:civ_border_color="#F4F8FF"
-        app:civ_border_width="2dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toTopOf="@+id/imageView14" />
+        app:riv_border_color="#F4F8FF"
+        app:riv_border_width="2dp"
+        app:layout_constraintStart_toEndOf="@+id/image2"
+        app:layout_constraintTop_toTopOf="@+id/image2"
+        app:riv_corner_radius="25dp" />
 
     <ImageView
         android:id="@+id/imageView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView16"
+        app:layout_constraintEnd_toStartOf="@+id/image3"
         app:layout_constraintHorizontal_bias="0.98"
-        app:layout_constraintStart_toStartOf="@+id/imageView14"
-        app:layout_constraintTop_toTopOf="@+id/imageView14"
+        app:layout_constraintStart_toStartOf="@+id/image2"
+        app:layout_constraintTop_toTopOf="@+id/image2"
         app:srcCompat="@drawable/ic_checkmark_blue" />
 
     <ImageView
         android:id="@+id/imageView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/imageView16"
+        app:layout_constraintEnd_toEndOf="@+id/image3"
         app:layout_constraintHorizontal_bias="0.58"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView16"
+        app:layout_constraintStart_toEndOf="@+id/image1"
+        app:layout_constraintTop_toTopOf="@+id/image3"
         app:srcCompat="@drawable/ic_checkmark_blue" />
 
     <ImageView
@@ -63,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/image1"
+        app:layout_constraintTop_toTopOf="@+id/image1"
         app:srcCompat="@drawable/ic_checkmark_blue" />
 </androidx.constraintlayout.widget.ConstraintLayout>

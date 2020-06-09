@@ -15,8 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:background="@color/white">
+        android:animateLayoutChanges="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/innerConstraint"
@@ -84,6 +83,7 @@
             android:id="@+id/expandableLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,6 +94,8 @@
                 layout="@layout/venue_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                 tools:layout_editor_absoluteX="0dp" />
 
@@ -102,30 +104,32 @@
                 layout="@layout/venue_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clipChildren="false"
                 app:layout_constraintTop_toBottomOf="@+id/include"
                 tools:layout_editor_absoluteX="0dp" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/diff"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="60dp"
-                android:backgroundTint="@color/white"
-                android:elevation="10dp"
-                android:text="10 Mins"
-                android:textAllCaps="false"
+                android:layout_height="35dp"
+                android:layout_marginStart="40dp"
+                android:background="@drawable/btn_circular_bg_corners_blue"
+                android:drawableStart="@drawable/ic_man_walking"
+                android:drawablePadding="0dp"
                 android:textColor="#ABB5C7"
-                app:cornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="@+id/include"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include"
                 app:strokeColor="@color/colorPrimary"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="2dp"
+                tools:text="10 Mins" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -140,39 +144,40 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageView10"
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/hostImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/profile1"
-                    app:civ_border_color="#07CFDA"
-                    app:civ_border_width="2dp"
+                    app:riv_border_color="#07CFDA"
+                    app:riv_border_width="2dp"
+                    app:riv_corner_radius="25dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/circleImageView"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_monkee"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView10"
-                    app:layout_constraintTop_toTopOf="@+id/imageView10"
+                    app:layout_constraintBottom_toBottomOf="@+id/hostImage"
+                    app:layout_constraintEnd_toEndOf="@+id/hostImage"
+                    app:layout_constraintTop_toTopOf="@+id/hostImage"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/hostName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
                     android:text="Nicolus is the host"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-                    app:layout_constraintStart_toEndOf="@+id/imageView10"
-                    app:layout_constraintTop_toTopOf="@+id/imageView10" />
+                    app:layout_constraintBottom_toBottomOf="@+id/hostImage"
+                    app:layout_constraintStart_toEndOf="@+id/hostImage"
+                    app:layout_constraintTop_toTopOf="@+id/hostImage" />
 
                 <ImageView
                     android:id="@+id/imageView12"
@@ -180,14 +185,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:padding="6dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView9"
-                    app:layout_constraintStart_toEndOf="@+id/textView9"
-                    app:layout_constraintTop_toTopOf="@+id/textView9"
+                    app:layout_constraintBottom_toBottomOf="@+id/hostName"
+                    app:layout_constraintStart_toEndOf="@+id/hostName"
+                    app:layout_constraintTop_toTopOf="@+id/hostName"
                     app:srcCompat="@drawable/ic_settings" />
 
                 <include
                     layout="@layout/profile_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:translationX="020dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView12"
@@ -212,6 +217,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="165dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include3">
@@ -228,17 +235,18 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imageView23"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="6dp"
                     android:src="@drawable/profile5"
-                    app:civ_border_color="#F4F8FF"
-                    app:civ_border_width="2dp"
+                    app:riv_border_color="#F4F8FF"
+                    app:riv_border_width="2dp"
+                    app:riv_corner_radius="30dp"
                     app:layout_constraintEnd_toEndOf="@+id/imageView24"
                     app:layout_constraintStart_toStartOf="@+id/imageView24"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                    app:layout_constraintTop_toBottomOf="@+id/commentCount" />
 
                 <ImageView
                     android:id="@+id/imageView22"
@@ -248,7 +256,7 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView23"
                     app:srcCompat="@drawable/ic_checkmark_blue" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imageView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -272,11 +280,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/chat_background"
                     android:padding="6dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView10"
                     app:layout_constraintStart_toEndOf="@+id/imageView24"
                     app:layout_constraintTop_toTopOf="@+id/imageView24">
 
@@ -310,7 +317,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/commentCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -325,7 +332,6 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="20dp"
                     android:background="@drawable/thoughts_background"
                     android:ems="10"
                     android:hint="Write your thoughts"
@@ -336,6 +342,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView23"
                     app:layout_constraintTop_toTopOf="@+id/imageView23" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/chatLay"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/chatLay"
+                    app:srcCompat="@drawable/ic_heart" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

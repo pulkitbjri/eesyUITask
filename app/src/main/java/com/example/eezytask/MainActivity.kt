@@ -3,33 +3,46 @@ package com.example.eezytask
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.eezytask.models.Data
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
-    val list = ArrayList<Data>()
+    lateinit var viewModel: MainViewModel
     private lateinit var adapter: MainAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        prepareData()
+        initViewModel()
+
+        observeData()
         initRecycler()
+
+        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+        val today = Date()
+        val todayWithZeroTime: Date = formatter.parse(formatter.format(today))
+
+
+        getDatesBetweenByWeek(todayWithZeroTime)
     }
 
-    private fun prepareData() {
-        list.add(Data("Morning","20 C",R.drawable.noon,false))
-        list.add(Data("Morning","20 C",R.drawable.noon,false))
-        list.add(Data("Noon","30 C",R.drawable.ic_rain_grey,false))
-        list.add(Data("AfterNoon","26 C",R.drawable.noon,false))
-        list.add(Data("Evening","26 C",R.drawable.ic_rain_grey,false))
-        list.add(Data("Night","16 C",R.drawable.ic_rain_grey,false))
+    private fun initViewModel() {
+        viewModel= ViewModelProvider(this).get(MainViewModel::class.java)
+    }
+    private fun observeData() {
+        viewModel.liveData.observe(this, Observer {
+            adapter.setListData( it.data!!)
+        })
     }
 
     private fun initRecycler() {
-        adapter = MainAdapter(list)
+        adapter = MainAdapter()
         recycler.layoutManager=LinearLayoutManager(this)
         recycler.adapter= adapter
     }
@@ -39,5 +52,43 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.home_menu, menu)
         return true
     }
+    fun getDatesBetweenByWeek(
+        startDate: Date
+    ): ArrayList<Date> {
+        val weekDaysPassed= getWeekDaysPassed(startDate)
+        val newStartDate = getNewStartDate(weekDaysPassed,startDate)
+        val cal = Calendar.getInstance()
+        cal.time=newStartDate
+        cal.add(Calendar.DATE, 168)
+        val endDate = cal.time
 
+        val datesInRange: ArrayList<Date> = ArrayList()
+        val calendar: Calendar = GregorianCalendar()
+        calendar.time = newStartDate
+        val endCalendar: Calendar = GregorianCalendar()
+        endCalendar.time = endDate
+        while (calendar.before(endCalendar)) {
+            val result: Date = calendar.getTime()
+            datesInRange.add(result)
+            calendar.add(Calendar.DATE, 1)
+        }
+        return datesInRange
+    }
+
+    private fun getNewStartDate(weekDaysPassed: Int, startDate: Date): Date {
+        val d = startDate
+        val dateBefore =  Date(d.getTime() - weekDaysPassed * 24 * 3600 * 1000 )
+        return dateBefore
+    }
+
+    private fun getWeekDaysPassed(startDate: Date): Int {
+        val c = Calendar.getInstance()
+        c.time = startDate
+        c.set(Calendar.DAY_OF_WEEK,-3)
+        val dayOfWeek = c[Calendar.DAY_OF_WEEK]
+        if (dayOfWeek==1)
+            return 6
+        else
+            return dayOfWeek-2
+    }
 }

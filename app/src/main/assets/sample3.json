@@ -1,0 +1,43 @@
+{
+  "data":[
+  {
+    "timeSlot": "Night",
+    "temp": "15 C",
+    "image": 2,
+    "plan": [
+      {
+        "type": "header",
+        "hostImageUrl": "https://i.picsum.photos/id/1027/2848/4272.jpg",
+        "text": "You are the host",
+        "imageUrlList": [
+          "https://i.picsum.photos/id/1074/5472/3648.jpg",
+          "https://i.picsum.photos/id/177/2515/1830.jpg",
+          "https://i.picsum.photos/id/203/4032/3024.jpg"
+        ]
+      },
+      {
+        "type": "restro",
+        "time": "6:00 PM",
+        "name": "Coffee Square",
+        "imageUrl": "https://images.pexels.com/photos/735869/pexels-photo-735869.jpeg?cs=srgb&dl=close-up-photo-of-formal-table-setting-735869.jpg&fm=jpg",
+        "foodType": "cockTail",
+        "address": "10 Kings NW7 2FR",
+        "inAccepted": true,
+        "timeToNext": "20 mins"
+      },
+      {
+        "type": "restro",
+        "time": "6:00 PM",
+        "name": "ColdCoffee Square",
+        "imageUrl": "https://images.pexels.com/photos/64208/pexels-photo-64208.jpeg?cs=srgb&dl=food-plate-yellow-spaghetti-64208.jpg&fm=jpg",
+        "foodType": "thai",
+        "address": "20 Quens SW7 2DR",
+        "inAccepted": false
+      },
+      {
+        "type": "comments",
+        "count": 108
+      }
+    ]
+  }
+]}

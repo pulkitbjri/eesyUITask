@@ -1,0 +1,123 @@
+{
+  "data":[
+  {
+    "timeSlot": "Morning",
+    "temp": "20 C",
+    "image": 1,
+    "plan": [
+      {
+        "type": "header",
+        "hostImageUrl": "https://i.picsum.photos/id/1027/2848/4272.jpg",
+        "text": "You are the host",
+        "imageUrlList": [
+          "https://i.picsum.photos/id/1074/5472/3648.jpg",
+          "https://i.picsum.photos/id/177/2515/1830.jpg",
+          "https://i.picsum.photos/id/203/4032/3024.jpg"
+        ]
+      },
+      {
+        "type": "restro",
+        "time": "6:00 PM",
+        "imageUrl": "https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?cs=srgb&dl=alcohol-architecture-bar-beer-260922.jpg&fm=jpg",
+        "foodType": "cockTail",
+        "name": "DustBin Square",
+        "address": "10 Kings NW7 2FR",
+        "inAccepted": true,
+        "timeToNext": "20 mins"
+      },
+      {
+        "type": "restro",
+        "time": "6:00 PM",
+        "imageUrl": "https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "name": "Water Square",
+        "foodType": "thai",
+        "address": "20 Quens SW7 2DR",
+        "inAccepted": false
+      },
+      {
+        "count": 10,
+        "type": "comments"
+      }
+    ]
+  },
+  {
+    "timeSlot": "AfterNoon",
+    "temp": "40 C",
+    "image": 1,
+    "plan": [
+      {
+        "type": "header",
+        "hostImageUrl": "https://i.picsum.photos/id/1027/2848/4272.jpg",
+        "text": "You are the host",
+        "imageUrlList": [
+          "https://i.picsum.photos/id/1074/5472/3648.jpg",
+          "https://i.picsum.photos/id/177/2515/1830.jpg",
+          "https://i.picsum.photos/id/203/4032/3024.jpg"
+        ]
+      },
+      {
+        "type": "restro",
+        "time": "6:00 PM",
+        "imageUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80",
+        "foodType": "cockTail",
+        "name": "CockTail Square",
+        "address": "10 Kings NW7 2FR",
+        "inAccepted": true,
+        "timeToNext": "20 mins"
+      },
+      {
+        "type": "restro",
+        "time": "6:00 PM",
+        "name": "Whiskey Square",
+        "imageUrl": "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+        "foodType": "thai",
+        "address": "20 Quens SW7 2DR",
+        "inAccepted": false
+      },
+      {
+        "count": 1,
+        "type": "comments"
+      }
+    ]
+  },
+  {
+    "timeSlot": "Night",
+    "temp": "15 C",
+    "image": 1,
+    "plan": [
+      {
+        "type": "header",
+        "hostImageUrl": "https://i.picsum.photos/id/1027/2848/4272.jpg",
+        "text": "You are the host",
+        "imageUrlList": [
+          "https://i.picsum.photos/id/1074/5472/3648.jpg",
+          "https://i.picsum.photos/id/177/2515/1830.jpg",
+          "https://i.picsum.photos/id/203/4032/3024.jpg"
+        ]
+      },
+      {
+        "type": "restro",
+        "time": "6:00 PM",
+        "imageUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80",
+        "name": "Pizza Square",
+        "foodType": "cockTail",
+        "address": "10 Kings NW7 2FR",
+        "inAccepted": true,
+        "timeToNext": "20 mins"
+      },
+      {
+        "type": "restro",
+        "time": "6:00 PM",
+        "imageUrl": "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+        "name": "Burger Square",
+        "foodType": "thai",
+        "address": "20 Quens SW7 2DR",
+        "inAccepted": false
+      },
+      {
+        "type": "comments",
+        "count": 100
+      }
+    ]
+  }
+]}
