@@ -29,12 +29,7 @@ class MainActivity : AppCompatActivity() ,CalenderViewAdapter.DateSelectedListne
         observeData()
         initRecycler()
 
-        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
-        val today = Date()
-        val todayWithZeroTime: Date = formatter.parse(formatter.format(today))
 
-
-        getDatesBetweenByWeek(todayWithZeroTime)
     }
 
     private fun initViewModel() {
@@ -59,45 +54,6 @@ class MainActivity : AppCompatActivity() ,CalenderViewAdapter.DateSelectedListne
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.home_menu, menu)
         return true
-    }
-    fun getDatesBetweenByWeek(
-        startDate: Date
-    ): ArrayList<Date> {
-        val weekDaysPassed= getWeekDaysPassed(startDate)
-        val newStartDate = getNewStartDate(weekDaysPassed,startDate)
-        val cal = Calendar.getInstance()
-        cal.time=newStartDate
-        cal.add(Calendar.DATE, 168)
-        val endDate = cal.time
-
-        val datesInRange: ArrayList<Date> = ArrayList()
-        val calendar: Calendar = GregorianCalendar()
-        calendar.time = newStartDate
-        val endCalendar: Calendar = GregorianCalendar()
-        endCalendar.time = endDate
-        while (calendar.before(endCalendar)) {
-            val result: Date = calendar.getTime()
-            datesInRange.add(result)
-            calendar.add(Calendar.DATE, 1)
-        }
-        return datesInRange
-    }
-
-    private fun getNewStartDate(weekDaysPassed: Int, startDate: Date): Date {
-        val d = startDate
-        val dateBefore =  Date(d.getTime() - weekDaysPassed * 24 * 3600 * 1000 )
-        return dateBefore
-    }
-
-    private fun getWeekDaysPassed(startDate: Date): Int {
-        val c = Calendar.getInstance()
-        c.time = startDate
-        c.set(Calendar.DAY_OF_WEEK,-3)
-        val dayOfWeek = c[Calendar.DAY_OF_WEEK]
-        if (dayOfWeek==1)
-            return 6
-        else
-            return dayOfWeek-2
     }
 
     override fun dateSelected(date: Date) {
