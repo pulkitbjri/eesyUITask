@@ -45,10 +45,6 @@ class CustomGrooveView : View{
     }
 
     private fun init(attrs: AttributeSet?) {
-        Log.w(
-            TAG,
-            "You cannot apply divider width greater than scallop radius. Applying divider width to scallop radius."
-        )
         if (attrs!=null){
 
             val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomGrooveView)

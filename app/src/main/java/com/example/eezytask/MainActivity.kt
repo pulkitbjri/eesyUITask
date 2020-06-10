@@ -1,18 +1,23 @@
 package com.example.eezytask
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.eezytask.calenderView.CalenderViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() ,CalenderViewAdapter.DateSelectedListner{
     lateinit var viewModel: MainViewModel
     private lateinit var adapter: MainAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +41,16 @@ class MainActivity : AppCompatActivity() {
         viewModel= ViewModelProvider(this).get(MainViewModel::class.java)
     }
     private fun observeData() {
-        viewModel.liveData.observe(this, Observer {
-            adapter.setListData( it.data!!)
+        viewModel.liveData
+            .debounce(500)
+            .observe(this, Observer {
+            recycler.post(Runnable { adapter.setListData( it.data!!) })
+
         })
     }
 
     private fun initRecycler() {
-        adapter = MainAdapter()
+        adapter = MainAdapter(this)
         recycler.layoutManager=LinearLayoutManager(this)
         recycler.adapter= adapter
     }
@@ -90,5 +98,22 @@ class MainActivity : AppCompatActivity() {
             return 6
         else
             return dayOfWeek-2
+    }
+
+    override fun dateSelected(date: Date) {
+        viewModel.setRandomSampleData()
+    }
+    fun <T> LiveData<T>.debounce(duration: Long = 1000L) = MediatorLiveData<T>().also { mld ->
+        val source = this
+        val handler = Handler(Looper.getMainLooper())
+
+        val runnable = Runnable {
+            mld.value = source.value
+        }
+
+        mld.addSource(source) {
+            handler.removeCallbacks(runnable)
+            handler.postDelayed(runnable, duration)
+        }
     }
 }

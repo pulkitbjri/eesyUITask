@@ -2,10 +2,12 @@ package com.example.eezytask.calenderView
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.eezytask.R
@@ -16,7 +18,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CalenderView : FrameLayout {
+class CalenderView : FrameLayout, CalenderViewAdapter.DateSelectedListner {
+    private var listner: CalenderViewAdapter.DateSelectedListner?=null
     private lateinit var itemView: View
     lateinit var dates :ArrayList<Date>
 
@@ -45,9 +48,9 @@ class CalenderView : FrameLayout {
         init(context)
     }
     private fun init(context: Context?) {
-        initCalenderDates()
         itemView = LayoutInflater.from(context).inflate(R.layout.calender_view, this, false)
         this.addView(itemView)
+        initCalenderDates()
         setRecycler()
     }
 
@@ -57,20 +60,23 @@ class CalenderView : FrameLayout {
         val todayWithZeroTime: Date = formatter.parse(formatter.format(today))
         dates=getDatesBetween(todayWithZeroTime)
 
+        dateSelected(todayWithZeroTime)
     }
 
     private fun setRecycler() {
         recyclerView.layoutManager= LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = CalenderViewAdapter(dates)
-        val snapHelper: SnapHelper = SnapHelperOneByOne()
+        recyclerView.adapter = CalenderViewAdapter(dates,this)
+        val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (newState == RecyclerView.SCROLL_STATE_SETTLING || newState == RecyclerView.SCROLL_STATE_IDLE){
-                    val pos= ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
-                    recyclerView.adapter?.notifyItemChanged(pos)
+                if ( newState == RecyclerView.SCROLL_STATE_IDLE){
+                    val pos= ((recyclerView.layoutManager) as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                    if (pos>=0)
+                        recyclerView.adapter?.notifyItemChanged(pos)
+                    Log.i("aaa", "onScrollStateChanged: "+pos)
                 }
 
             }
@@ -115,6 +121,16 @@ class CalenderView : FrameLayout {
             return 6
         else
             return dayOfWeek-2
+    }
+
+    override fun dateSelected(date: Date) {
+        val dateFormatter =  SimpleDateFormat("EE dd, MMMM YYYY", Locale.ENGLISH);
+        selectedDate.text=dateFormatter.format(date)
+        listner?.dateSelected(date)
+    }
+
+    fun setDateSelectedListner(listner:CalenderViewAdapter.DateSelectedListner) {
+        this.listner=listner
     }
 
 }

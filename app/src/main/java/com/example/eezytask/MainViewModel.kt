@@ -18,7 +18,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     init {
         prepareData()
     }
-    private fun setRandomSampleData() {
+     fun setRandomSampleData() {
         liveData.value=getRandomElement(sampleList)
 //        liveData.value=sampleList[0]
     }

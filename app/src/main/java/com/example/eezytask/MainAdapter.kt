@@ -1,27 +1,17 @@
 package com.example.eezytask
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.eezytask.calenderView.CalenderView
+import com.example.eezytask.calenderView.CalenderViewAdapter
 import com.example.eezytask.models.Data
-import com.example.eezytask.models.Plans
-import com.example.eezytask.models.plan.Comments
-import com.example.eezytask.models.plan.Header
-import com.example.eezytask.models.plan.Restro
-import com.example.eezytask.slotsCustomView.Utils
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class MainAdapter() : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter(val listner: CalenderViewAdapter.DateSelectedListner) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     var list: ArrayList<Data> = ArrayList()
     fun setListData(lista: ArrayList<Data>)
     {
@@ -62,9 +52,15 @@ class MainAdapter() : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     abstract class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         abstract fun bindData(data: Data)
     }
-    class CalenderVH(itemView: View) : ViewHolder(itemView)
+    inner class CalenderVH(itemView: View) : ViewHolder(itemView), CalenderViewAdapter.DateSelectedListner
     {
+        val calenderView =itemView.findViewById<CalenderView>(R.id.calenderView)
         override fun bindData(data: Data) {
+            calenderView.setDateSelectedListner(this)
+        }
+
+        override fun dateSelected(date: Date) {
+            listner.dateSelected(date)
         }
     }
 
